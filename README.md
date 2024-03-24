@@ -1,12 +1,14 @@
 # Robust Optimization of Decision Variables under Coefficient Uncertainty
-This repository demonstrate a method for selecting the optimal combination of decision variables from a predefined set,
+This repository demonstrates a method for selecting the optimal combination of decision variables from a predefined set,
 under the influence of uncertain coefficients.
-It specifically addresses the challenge of optimizing the objective function $ax + by + cz$ in the face of coefficient fluctuations,
-aiming to identify the most robust combination that minimizes/maximizes the objective function across a range of possible combinations of coefficients $(a, b, c)$.
+It aims to identify a robust combination that effectively minimizes or maximizes the objective function,
+considering a wide range of potential variations in both the coefficients($a, b, c$) and decision variables from a predefined table ($x, y, z$)."
 
 ## Problem Statement
 **Objective Function:**
 minimize/maximize $(ax + by + cz)$
+
+The example in this repo is minimize case.
 
 **Constraints:**
 1. $a>=0, b>=0, c>=0$
@@ -22,5 +24,19 @@ The approach consists of two main steps:
 1. **Coefficient Uncertainty Analysis (`coeff_analysis.py`)**: Analyzes the fluctuations of coefficient $(a, b, c)$, by generating a set of feasible parameter combinations along with their appearance rates based on a simple linear formula. This step lays the foundation for understanding the impact of parameter variability on the objective function.
 2. **Optimization of Decision Variables (`decision_optimization.py`)**: Assesses each predefined combination of $(x, y, z)$ and the best selection order across across different possible coefficient combinations. It computes a performance score for each variable combination, aiming to identify the combination that minimizes/maximizes the objective function in a robust manner.
 
-## Application
-WIP
+## Application Example: Cost Minimization in Tapioca Store Ingredient Procurement
+
+### Objective
+Minimize procurement costs for milk, tea, and tapioca pearls by leveraging price differences across supermarkets.
+
+### Coefficients
+- **a, b, c:** Daily sales ratios for milk, tea, and tapioca pearls which might changed day by day. This sums up to 1.
+
+### Decision Variables from Given Table
+- **x, y, z:** Variable prices for milk, tea, and tapioca pearls across 10 supermarkets, reflecting the cost landscape's complexity and variability. Converting this to a table satisfy the uncertainty we can have in choosing xyz.
+
+### Approach
+1. **Market Analysis:** Identify price variations for each ingredient across supermarkets.
+2. **Supermarket Selection:** Choose supermarkets that offer the best prices aligned with the sales ratios of milk, tea, and tapioca pearls, minimizing overall costs.
+
+By applying the equation \(ax + by + cz\) within this framework, the store can in the given order would effectively minimize ingredient costs, enhancing profitability.
